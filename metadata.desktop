@@ -1,0 +1,15 @@
+[Desktop Entry]
+Name=XrendrMixer
+Comment=Controls brigtness & gamma by xrendr
+Encoding=UTF-8
+Icon=preferences-desktop-display-color
+ServiceTypes=Plasma/Applet
+Type=Service
+X-KDE-PluginInfo-Author=vycb
+X-KDE-PluginInfo-Email=vycb777@gmail.com
+X-KDE-PluginInfo-Name=XrendrMixer
+X-KDE-PluginInfo-License=GPL
+X-KDE-PluginInfo-Version=1.0
+X-KDE-PluginInfo-Website=https://github.com/vycb/XrendrMixer
+X-Plasma-API=declarativeappletscript
+X-Plasma-MainScript=ui/main.qml
