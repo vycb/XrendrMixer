@@ -20,11 +20,8 @@
 import QtQuick 2.5
 import QtQuick.Layouts 1.3
 import QtQuick.Controls 1.4
-import QtQuick.Dialogs 1.2
 import org.kde.plasma.core 2.0 as PlasmaCore
 import org.kde.plasma.components 2.0 as PlasmaComponents
-import QtQuick.Controls.Styles 1.2
-import QtQuick.Layouts 1.0
 
 Item {
     id: root
@@ -68,17 +65,20 @@ Item {
 					anchors.top: heading.bottom
 
 					Label {
-							text: qsTr("Brigtness")
+							text: qsTr("Brightness")
 							Layout.alignment: Qt.AlignRight
 					}
 					
 					SpinBox {
-						id: brigtness
+						id: brightness
 						minimumValue: 0
 						value: 0.2
-						maximumValue: 1
+						maximumValue: 7
 						stepSize: 0.01
 						decimals: 2
+						onEditingFinished:{
+							sync()
+						}
 					}
 					
 					Label {
@@ -89,10 +89,13 @@ Item {
 					SpinBox {
 						id: gamma
 						minimumValue: 0
-						value: 0.5
-						maximumValue: 1
+						value: 1
+						maximumValue: 5
 						stepSize: 0.01
 						decimals: 2
+						onEditingFinished: {
+							sync()
+						}
 					}
 					
 
@@ -103,12 +106,12 @@ Item {
         anchors.horizontalCenter: parent.horizontalCenter
 				text: "Apply"
 				onClicked: {
-// 					console.log("brightness="+brigtness.value+' gamma='+gamma.value);
+// 					console.log("brightness="+brightness.value+' gamma='+gamma.value);
 					sync();
 					}
 				}
 		}
-		
+
 		PlasmaCore.DataSource {
 			id: executeSource
 			engine: "executable"
@@ -118,7 +121,7 @@ Item {
 			}
 		}
     function exec(cmd) {
-			console.log('cmd='+cmd);
+// 			console.log('cmd='+cmd);
 			executeSource.connectSource(cmd)
     }
 
@@ -127,7 +130,7 @@ Item {
     }
 
     function sync() {
-			exec("xrandr --output "+root.screen+" --brightness "+brigtness.value+" --gamma "+gamma.value+":"+gamma.value+":"+gamma.value)
+			exec("xrandr --output "+root.screen+" --brightness "+brightness.value+" --gamma "+gamma.value+":"+gamma.value+":"+gamma.value)
     }
 
     function action_sync() {
