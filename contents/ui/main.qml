@@ -72,7 +72,7 @@ Item {
 					SpinBox {
 						id: brightness
 						minimumValue: 0.01
-						value: plasmoid.configuration.brightness == 0 ? 0.12 : plasmoid.configuration.brightness
+						value: plasmoid.configuration.brightness <= brightness.minimumValue ? 0.12 : plasmoid.configuration.brightness
 						maximumValue: 7
 						stepSize: 0.01
 						decimals: 2
@@ -89,7 +89,7 @@ Item {
 					SpinBox {
 						id: gamma
 						minimumValue: 0.01
-						value: plasmoid.configuration.gamma == 0 ? 1 : plasmoid.configuration.gamma
+						value: plasmoid.configuration.gamma <= gamma.minimumValue ? 1 : plasmoid.configuration.gamma
 						maximumValue: 5
 						stepSize: 0.01
 						decimals: 2
