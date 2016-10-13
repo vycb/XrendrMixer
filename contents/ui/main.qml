@@ -31,15 +31,15 @@ Item {
 		Layout.preferredWidth: units.gridUnit * 14
 		Layout.maximumWidth: plasmoid.screenGeometry.width
 
-    Label {
-        id: heading
-        width: parent.width
-        text: "Xrendr Mixer"
-        anchors.top: parent.top
-        anchors.horizontalCenter: parent.horizontalCenter
-        font.pointSize : 12
-        horizontalAlignment: "AlignHCenter"
-    }
+//     Label {
+//         id: heading
+//         width: parent.width
+//         text: "Xrendr Mixer"
+//         anchors.top: parent.top
+//         anchors.horizontalCenter: parent.horizontalCenter
+//         font.pointSize : 12
+//         horizontalAlignment: "AlignHCenter"
+//     }
     
     Connections {
         target: plasmoid.configuration
@@ -71,8 +71,8 @@ Item {
 					
 					SpinBox {
 						id: brightness
-						minimumValue: 0
-						value: 0.2
+						minimumValue: 0.01
+						value: plasmoid.configuration.brightness == 0 ? 0.12 : plasmoid.configuration.brightness
 						maximumValue: 7
 						stepSize: 0.01
 						decimals: 2
@@ -88,8 +88,8 @@ Item {
 					
 					SpinBox {
 						id: gamma
-						minimumValue: 0
-						value: 1
+						minimumValue: 0.01
+						value: plasmoid.configuration.gamma == 0 ? 1 : plasmoid.configuration.gamma
 						maximumValue: 5
 						stepSize: 0.01
 						decimals: 2
@@ -125,15 +125,15 @@ Item {
 			executeSource.connectSource(cmd)
     }
 
-		Component.onCompleted: {
-			plasmoid.setAction("sync", i18n("Sinc"), "configure");
-    }
+// 		Component.onCompleted: {
+// 			plasmoid.setAction("sync", i18n("Sync"), "configure");
+//     }
 
     function sync() {
 			exec("xrandr --output "+root.screen+" --brightness "+brightness.value+" --gamma "+gamma.value+":"+gamma.value+":"+gamma.value)
     }
 
-    function action_sync() {
-			sync()
-    }
+//     function action_sync() {
+// 			sync()
+//     }
 }

@@ -8,5 +8,9 @@
     <group name="General">   
         <entry name="screen" type="String">
         </entry>     
+        <entry name="brightness" type="Double">
+        </entry>     
+        <entry name="gamma" type="Double">
+        </entry>     
    </group>
 </kcfg> 
